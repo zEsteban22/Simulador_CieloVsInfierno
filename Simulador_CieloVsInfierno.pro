@@ -26,10 +26,14 @@ CONFIG += c++11
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        mundo.cpp \
+        persona.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+        mundo.h \
+        persona.h
 
 FORMS += \
         mainwindow.ui
