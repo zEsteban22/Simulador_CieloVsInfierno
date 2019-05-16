@@ -26,6 +26,7 @@ CONFIG += c++11
 
 SOURCES += \
         arboldelmundo.cpp \
+        avl.cpp \
         infierno.cpp \
         listapersonas.cpp \
         main.cpp \
@@ -34,17 +35,20 @@ SOURCES += \
         nodoarbol.cpp \
         nodopersona.cpp \
         nodovacio.cpp \
+        paraiso.cpp \
         persona.cpp \
         random.cpp
 
 HEADERS += \
         arboldelmundo.h \
+        avl.h \
         infierno.h \
         listapersonas.h \
         mainwindow.h \
         mundo.h \
         nodoarbol.h \
         nodolista.h \
+        paraiso.h \
         persona.h
 
 FORMS += \
