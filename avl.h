@@ -1,13 +1,12 @@
 #ifndef AVL_H
 #define AVL_H
 
-
 #include "persona.h"
-
 #include<iostream>
 #include<cstdio>
 #include<sstream>
 #include<algorithm>
+#include<QQueue>
 #define pow2(n) (1 << (n))
 using namespace std;
 struct avl {
@@ -24,7 +23,7 @@ struct avl_tree {
 		avl *lr_rotat(avl*);
 		avl *rl_rotat(avl *);
 		avl * balance(avl *);
-		avl*insert(int d){
+		avl*insert(Persona* d){
 			return insert(r,d);
 		}
 		avl*get(int d){
@@ -40,7 +39,18 @@ struct avl_tree {
 			else
 				return get(id,r->r);
 		}
-		avl * insert(avl*, int);
+		avl * insert(avl*, Persona*);
+		int sumaPecados(){
+			int salida=0;
+			QQueue<avl*>restantes;
+			avl*nodo=r;
+			while(nodo!=nullptr){
+				restantes.enqueue(nodo->l);
+				restantes.enqueue(nodo->r);
+				salida+=r->d->sumaPecados();
+				nodo=restantes.dequeue();
+			}
+		}
 		avl_tree() {
 			r = NULL;
 		}

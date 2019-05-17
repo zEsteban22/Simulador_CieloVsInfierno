@@ -6,7 +6,8 @@ struct NodoLista
 {
 		Persona*persona;
 		NodoLista*siguiente,*anterior;
-		NodoLista();
+		NodoLista(Persona*p):persona(p),siguiente(nullptr),anterior(nullptr){}
+		NodoLista(Persona*p,NodoLista*a):persona(p),siguiente(nullptr),anterior(a){}
 };
 
 #endif // NODOPERSONA_H

@@ -9,6 +9,9 @@ struct ArbolDelMundo
 		int altura;
 		NodoArbol*raiz;
 		ArbolDelMundo();
+		bool insertar(NodoLista*nodo){
+			return insertar(new NodoArbol(nodo));
+		}
 		bool insertar(NodoArbol*nodo){
 			return insertar(nodo,raiz);
 		}
@@ -46,9 +49,7 @@ struct ArbolDelMundo
 				insertar(nodo,raiz);
 		}
 		void aniadirNivel(NodoArbol*nodo,NodoArbol*raiz){
-			if (nodo->valor==raiz->valor)
-				return;
-			else if(nodo->valor<raiz->valor)
+			if(nodo->valor<=raiz->valor)
 				if(raiz->hijoIzquierdo==nullptr)
 					raiz->hijoIzquierdo=nodo;
 				else 
@@ -60,14 +61,26 @@ struct ArbolDelMundo
 					insertar(nodo,raiz->hijoDerecho);
 		}
 		void completarArbol(ListaPersonas*lista){
-			NodoArbol*ultimoInsertado;
-			int ultimaPosicion;
-			for(int i=0;i<=lista->lenght/10;i++){
-				ultimoInsertado=new NodoArbol(lista->getByIndex(i*10));
-				insertar(ultimoInsertado);
-				ultimaPosicion=i*10;
+			insertar(lista->primero());
+			completarArbol(lista,0,lista->size());
+		}
+		void completarArbol(ListaPersonas*lista,int inicio, int fin){
+			if (fin-inicio>100){
+				insertar(lista->getByIndex(inicio));
+				insertar(lista->getByIndex((inicio+fin)/2));
+				completarArbol(lista,inicio,fin/2);
+				completarArbol(lista,fin/2,fin);
 			}
-			
+		}
+		void vaciarArbol(){
+			QQueue<NodoArbol*>restantes;
+			NodoArbol*nodo=raiz;
+			while (nodo!=nullptr&&nodo->hijoDerecho!=nullptr){
+				nodo->nodoLista=nullptr;
+				restantes.enqueue(nodo->hijoIzquierdo);
+				restantes.enqueue(nodo->hijoDerecho);
+				nodo=restantes.dequeue();
+			}
 		}
 		Persona*getPersonaPorId(int);
 		bool existe(int);
