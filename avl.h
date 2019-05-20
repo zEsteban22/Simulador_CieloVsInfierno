@@ -9,6 +9,10 @@
 #include<QQueue>
 #define pow2(n) (1 << (n))
 using namespace std;
+void sumaDeArrays(int arr1[8],int arr2[8]){
+	for (int i=0;i<8;i++)
+		arr1[i]+=arr2[i];
+}
 struct avl {
 	 Persona*d;
 	 avl *l;
@@ -40,16 +44,24 @@ struct avl_tree {
 				return get(id,r->r);
 		}
 		avl * insert(avl*, Persona*);
-		int sumaPecados(){
-			int salida=0;
+		int* suma(bool pecados){
+			static int salida[8]={0,0,0,0,0,0,0,0};
 			QQueue<avl*>restantes;
 			avl*nodo=r;
 			while(nodo!=nullptr){
 				restantes.enqueue(nodo->l);
 				restantes.enqueue(nodo->r);
-				salida+=r->d->sumaPecados();
+				sumaDeArrays(salida,pecados?nodo->d->pecados:nodo->d->virtudes);
 				nodo=restantes.dequeue();
 			}
+			return salida;
+		}
+		int* sumaPecados(){
+			return suma(true);
+		}
+		int* sumaVirtudes(){
+			return suma(false);
+
 		}
 		avl_tree() {
 			r = NULL;

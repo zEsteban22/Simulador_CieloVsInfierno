@@ -6,24 +6,23 @@
 using namespace std;
 struct ArbolDelMundo
 {
-		int altura;
+		int cantNodos=1;
 		NodoArbol*raiz;
 		ArbolDelMundo();
-		bool insertar(NodoLista*nodo){
-			return insertar(new NodoArbol(nodo));
+		void aniadirAlArbol(NodoLista*nodo){
+			return aniadirAlArbol(new NodoArbol(nodo));
 		}
-		bool insertar(NodoArbol*nodo){
-			return insertar(nodo,raiz);
+		void  aniadirAlArbol(NodoArbol*nodo){
+			return aniadirAlArbol(nodo,raiz);
 		}
-		bool insertar(NodoArbol*nodo,NodoArbol*raiz){
-			if (raiz==nullptr)
-				return true;
-			if (insertar(nodo,raiz->hijoIzquierdo)){
-				raiz->hijoIzquierdo=nodo;
-				return true;
-			}
-			insertar(nodo->hijoDerecho);
-			return false;
+		void aniadirAlArbol(NodoArbol*nodo,NodoArbol*raiz){
+			NodoArbol**temp=&raiz;
+			while(*temp!=nullptr)
+				temp=&(nodo->nodoLista->persona->id<=(*temp)->nodoLista->persona->id?
+								 (*temp)->hijoIzquierdo:
+								 (*temp)->hijoDerecho
+							);
+			*temp=nodo;
 		}
 		void corrimientoALaIzquierda(NodoArbol*nodo){
 			if(corrimientoALaIzquierda(nodo,raiz))
@@ -46,28 +45,35 @@ struct ArbolDelMundo
 		void aniadirNivel(NodoArbol*nodo){
 			if (raiz==nullptr) raiz=nodo;
 			else 
-				insertar(nodo,raiz);
+				aniadirAlArbol(nodo,raiz);
 		}
 		void aniadirNivel(NodoArbol*nodo,NodoArbol*raiz){
 			if(nodo->valor<=raiz->valor)
 				if(raiz->hijoIzquierdo==nullptr)
 					raiz->hijoIzquierdo=nodo;
 				else 
-					insertar(nodo,raiz->hijoIzquierdo);
+					aniadirAlArbol(nodo,raiz->hijoIzquierdo);
 			else
 				if (raiz->hijoDerecho==nullptr)
 					raiz->hijoDerecho=nodo;
 				else 
-					insertar(nodo,raiz->hijoDerecho);
+					aniadirAlArbol(nodo,raiz->hijoDerecho);
 		}
 		void completarArbol(ListaPersonas*lista){
-			insertar(lista->primero());
+			aniadirAlArbol(lista->getByIndex(lista->size()/2));
 			completarArbol(lista,0,lista->size());
+			NodoArbol*temp=raiz;
+			int altura=0;
+			while (temp!=nullptr){
+				temp=temp->hijoIzquierdo;
+				altura++;
+			}
+			cantNodos=pow(2,altura);
 		}
 		void completarArbol(ListaPersonas*lista,int inicio, int fin){
 			if (fin-inicio>100){
-				insertar(lista->getByIndex(inicio));
-				insertar(lista->getByIndex((inicio+fin)/2));
+				aniadirAlArbol(lista->getByIndex(inicio));
+				aniadirAlArbol(lista->getByIndex((inicio+fin)/2));
 				completarArbol(lista,inicio,fin/2);
 				completarArbol(lista,fin/2,fin);
 			}
@@ -76,13 +82,16 @@ struct ArbolDelMundo
 			QQueue<NodoArbol*>restantes;
 			NodoArbol*nodo=raiz;
 			while (nodo!=nullptr&&nodo->hijoDerecho!=nullptr){
+				nodo->valor=nodo->hijoDerecho->valor;
 				nodo->nodoLista=nullptr;
 				restantes.enqueue(nodo->hijoIzquierdo);
 				restantes.enqueue(nodo->hijoDerecho);
 				nodo=restantes.dequeue();
 			}
 		}
-		Persona*getPersonaPorId(int);
+		Persona*getPersonaPorId(int){
+
+		}
 		bool existe(int);
 		bool existe(Persona*);
 };
