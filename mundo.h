@@ -21,17 +21,22 @@ struct Mundo
 		string nombres[1000],apellidos[1000],paises[100],profesiones[50],creencias[10];
 
 		ArbolDelMundo arbol;
-		ListaPersonas listaPersonas;
+		ListaPersonas lista;
 		Mundo();
 		void insertarNuevaPersona(){
-
+			Persona*nuevaPersona=new Persona(nombres[getRandomInt(0,1000)],apellidos[getRandomInt(0,1000)]
+					,paises[getRandomInt(0,100)],creencias[getRandomInt(0,10)],profesiones[getRandomInt(0,50)]
+					,"xllestebanllx@gmail.com");
+			lista.insertar(nuevaPersona);
+			if (arbol.cantNodos<lista.size()*0.01)
+				arbol.completarArbol(&lista);
 		}
 		void insertar10000Personas(){
 			for(int i=0;i<10000;i++)
 				insertarNuevaPersona();
 		}
 		void pecar(){
-			for (NodoLista*temp=listaPersonas.primero();temp!=nullptr;temp=temp->siguiente)
+			for (NodoLista*temp=lista.primero();temp!=nullptr;temp=temp->siguiente)
 				temp->persona->pecar();
 		}
 		QMap<QString,int*>cantAccionesPorFamilia(bool pecados,QString pais){
@@ -78,7 +83,7 @@ struct Mundo
 		}
 
 		void obrarBien(){
-			for (NodoLista*temp=listaPersonas.primero();temp!=nullptr;temp=temp->siguiente)
+			for (NodoLista*temp=lista.primero();temp!=nullptr;temp=temp->siguiente)
 				temp->persona->obrarBien();
 		}
 		void reportePaisesMasBuenaGente(){

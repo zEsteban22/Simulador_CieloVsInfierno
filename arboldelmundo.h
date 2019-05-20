@@ -6,7 +6,7 @@
 using namespace std;
 struct ArbolDelMundo
 {
-		int cantNodos=1;
+		int cantNodos=0;
 		NodoArbol*raiz;
 		ArbolDelMundo();
 		void aniadirAlArbol(NodoLista*nodo){
@@ -63,12 +63,11 @@ struct ArbolDelMundo
 			aniadirAlArbol(lista->getByIndex(lista->size()/2));
 			completarArbol(lista,0,lista->size());
 			NodoArbol*temp=raiz;
-			int altura=0;
+			cantNodos=1;
 			while (temp!=nullptr){
 				temp=temp->hijoIzquierdo;
-				altura++;
+				cantNodos*=2;
 			}
-			cantNodos=pow(2,altura);
 		}
 		void completarArbol(ListaPersonas*lista,int inicio, int fin){
 			if (fin-inicio>100){
