@@ -1,6 +1,6 @@
-#include "avlFamilias.h"
+#include "avlcielo.h"
 
-int avlFamilia::height(nodoPersona *t) {
+int avlCielo::height(nodoCielo *t) {
 	 int h = 0;
 	 if (t != NULL) {
 			int l_height = height(t->l);
@@ -10,43 +10,43 @@ int avlFamilia::height(nodoPersona *t) {
 	 }
 	 return h;
 }
-int avlFamilia::difference(nodoPersona *t) {
+int avlCielo::difference(nodoCielo *t) {
 	 int l_height = height(t->l);
 	 int r_height = height(t->r);
 	 int b_factor = l_height - r_height;
 	 return b_factor;
 }
-nodoPersona *avlFamilia::rr_rotat(nodoPersona *parent) {
-	 nodoPersona *t;
+nodoCielo *avlCielo::rr_rotat(nodoCielo *parent) {
+	 nodoCielo *t;
 	 t = parent->r;
 	 parent->r = t->l;
 	 t->l = parent;
 	 cout<<"Right-Right Rotation";
 	 return t;
 }
-nodoPersona *avlFamilia::ll_rotat(nodoPersona *parent) {
-	 nodoPersona *t;
+nodoCielo *avlCielo::ll_rotat(nodoCielo *parent) {
+	 nodoCielo *t;
 	 t = parent->l;
 	 parent->l = t->r;
 	 t->r = parent;
 	 cout<<"Left-Left Rotation";
 	 return t;
 }
-nodoPersona *avlFamilia::lr_rotat(nodoPersona *parent) {
-	 nodoPersona *t;
+nodoCielo *avlCielo::lr_rotat(nodoCielo *parent) {
+	 nodoCielo *t;
 	 t = parent->l;
 	 parent->l = rr_rotat(t);
 	 cout<<"Left-Right Rotation";
 	 return ll_rotat(parent);
 }
-nodoPersona *avlFamilia::rl_rotat(nodoPersona *parent) {
-	 nodoPersona *t;
+nodoCielo *avlCielo::rl_rotat(nodoCielo *parent) {
+	 nodoCielo *t;
 	 t = parent->r;
 	 parent->r = ll_rotat(t);
 	 cout<<"Right-Left Rotation";
 	 return rr_rotat(parent);
 }
-nodoPersona *avlFamilia::balance(nodoPersona *t) {
+nodoCielo *avlCielo::balance(nodoCielo *t) {
 	 int bal_factor = difference(t);
 	 if (bal_factor > 1) {
 			if (difference(t->l) > 0)
@@ -62,15 +62,15 @@ nodoPersona *avlFamilia::balance(nodoPersona *t) {
 	 return t;
 }
 
-nodoPersona*avlFamilia::insert(Persona*d){
-	return insert(r,d);
+nodoCielo*avlCielo::insert(Persona*d, NodoAngel*salvador){
+	return insert(r,d,salvador);
 }
 
-nodoPersona*avlFamilia::get(int d) const{
+nodoCielo*avlCielo::get(int d) const{
 	return get(d,r);
 }
 
-nodoPersona*avlFamilia::get(int id, nodoPersona*r) const{
+nodoCielo*avlCielo::get(int id, nodoCielo*r) const{
 	if (r==nullptr)
 		return nullptr;
 	else if(r->d->id==id)
@@ -80,26 +80,27 @@ nodoPersona*avlFamilia::get(int id, nodoPersona*r) const{
 	else
 		return get(id,r->r);
 }
-nodoPersona *avlFamilia::insert(nodoPersona *r, Persona* v) {
+nodoCielo *avlCielo::insert(nodoCielo *r, Persona* v,NodoAngel*salvador) {
 	if (r == NULL) {
-		r = new nodoPersona;
+		r = new nodoCielo;
 		r->d = v;
 		r->l = NULL;
 		r->r = NULL;
+		r->salvador=salvador;
 		return r;
 	} else if (v< r->d) {
-		r->l = insert(r->l, v);
-		r = balance(r);
+			r->l = insert(r->l, v,salvador);
+			r = balance(r);
 	 } else if (v >= r->d) {
-			r->r = insert(r->r, v);
+			r->r = insert(r->r, v,salvador);
 			r = balance(r);
 	 } return r;
 }
 
-int*avlFamilia::suma(bool pecados) const{
+int*avlCielo::suma(bool pecados) const{
 	static int salida[8]={0,0,0,0,0,0,0,0};
-	QQueue<nodoPersona*>restantes;
-	nodoPersona*nodo=r;
+	QQueue<nodoCielo*>restantes;
+	nodoCielo*nodo=r;
 	while(nodo!=nullptr){
 		restantes.enqueue(nodo->l);
 		restantes.enqueue(nodo->r);
@@ -109,18 +110,18 @@ int*avlFamilia::suma(bool pecados) const{
 	return salida;
 }
 
-int*avlFamilia::sumaPecados() const{
+int*avlCielo::sumaPecados() const{
 	return suma(true);
 }
 
-int*avlFamilia::sumaVirtudes() const{
+int*avlCielo::sumaVirtudes() const{
 	return suma(false);
 
 }
-string avlFamilia::inorder(int i){
+string avlCielo::inorder(int i){
 	return inorder(r,i);
 }
-string avlFamilia::inorder(nodoPersona *t,int i,string s) {
+string avlCielo::inorder(nodoCielo *t,int i,string s) {
 	if (t == NULL)
 		return "";
 	s+=inorder(t->l,i,s);
@@ -129,11 +130,6 @@ string avlFamilia::inorder(nodoPersona *t,int i,string s) {
 	return s;
 }
 
-avlFamilia::avlFamilia() {
+avlCielo::avlCielo() {
 	r = NULL;
 }
-
-avlFamilia::avlFamilia(Persona*p):r(new nodoPersona(p)){
-}
-
-nodoPersona::nodoPersona(Persona*p):d(p),l(nullptr),r(nullptr){}

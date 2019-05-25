@@ -25,32 +25,41 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+        arboldeangeles.cpp \
         arboldelmundo.cpp \
         avl.cpp \
+        avlcielo.cpp \
+        cielohash.cpp \
         controller.cpp \
         infierno.cpp \
         listapersonas.cpp \
         main.cpp \
         mainwindow.cpp \
         mundo.cpp \
+        nodoangel.cpp \
         nodoarbol.cpp \
         nodopersona.cpp \
         paraiso.cpp \
         persona.cpp \
-        random.cpp
+        randomxd.cpp
 
 HEADERS += \
+        arboldeangeles.h \
         arboldelmundo.h \
-        avl.h \
+        avlFamilias.h \
+        avlcielo.h \
+        cielohash.h \
         controller.h \
         infierno.h \
         listapersonas.h \
         mainwindow.h \
         mundo.h \
+        nodoangel.h \
         nodoarbol.h \
         nodolista.h \
         paraiso.h \
-        persona.h
+        persona.h \
+        randomxd.h
 
 FORMS += \
         mainwindow.ui

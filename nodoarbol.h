@@ -11,11 +11,8 @@ struct NodoArbol
 		NodoLista*nodoLista;
 		NodoArbol*hijoIzquierdo,*hijoDerecho;
 		NodoArbol();
-		NodoArbol(NodoLista*);
-		void corrimientoALaIzquierda(){
-			nodoLista=nodoLista->anterior;
-			valor=nodoLista->persona->id;
-		}
+		NodoArbol(NodoLista*n=nullptr);
+		void corrimientoALaIzquierda();
 };
 
 #endif // NODOARBOL_H

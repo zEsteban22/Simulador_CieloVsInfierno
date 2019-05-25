@@ -8,21 +8,12 @@
 struct ListaPersonas
 {
 		QVector<NodoLista>listaIndexada;
-		NodoLista*primero(){
-			return &listaIndexada.first();
-		}
-		ListaPersonas():listaIndexada(){
-		}
-		NodoLista*getByIndex(int i){
-			return &listaIndexada[i];
-		}
-		int size(){
-			return listaIndexada.size();
-		}
-		void insertar(Persona*p){
-			listaIndexada.append(NodoLista(p,listaIndexada.empty()?nullptr:&listaIndexada.last()));
-			listaIndexada.last().anterior->siguiente=&listaIndexada.last();
-		}
+		NodoLista*primero();
+		ListaPersonas();
+		NodoLista*getByIndex(int i);
+		int size();
+		void insertar(Persona*p);
+		void eliminar(NodoLista*n);
 };
 
 #endif // LISTAPERSONAS_H

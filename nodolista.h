@@ -10,6 +10,9 @@ struct NodoLista
 		}
 		NodoLista(Persona*p):persona(p),siguiente(nullptr),anterior(nullptr){}
 		NodoLista(Persona*p,NodoLista*a):persona(p),siguiente(nullptr),anterior(a){}
+		bool operator==(NodoLista const&other){
+			return persona->id==other.persona->id;
+		}
 };
 
 #endif // NODOPERSONA_H
