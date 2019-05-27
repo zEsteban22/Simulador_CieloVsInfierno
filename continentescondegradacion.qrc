@@ -1,0 +1,29 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Imagenes/Africa0.png</file>
+        <file>Imagenes/Africa1.png</file>
+        <file>Imagenes/Africa2.png</file>
+        <file>Imagenes/Africa3.png</file>
+        <file>Imagenes/Africa4.png</file>
+        <file>Imagenes/América0.png</file>
+        <file>Imagenes/América1.png</file>
+        <file>Imagenes/América2.png</file>
+        <file>Imagenes/América3.png</file>
+        <file>Imagenes/América4.png</file>
+        <file>Imagenes/Asia0.png</file>
+        <file>Imagenes/Asia1.png</file>
+        <file>Imagenes/Asia2.png</file>
+        <file>Imagenes/Asia3.png</file>
+        <file>Imagenes/Asia4.png</file>
+        <file>Imagenes/Europa0.png</file>
+        <file>Imagenes/Europa1.png</file>
+        <file>Imagenes/Europa2.png</file>
+        <file>Imagenes/Europa3.png</file>
+        <file>Imagenes/Europa4.png</file>
+        <file>Imagenes/Oceanía0.png</file>
+        <file>Imagenes/Oceanía1.png</file>
+        <file>Imagenes/Oceanía2.png</file>
+        <file>Imagenes/Oceanía3.png</file>
+        <file>Imagenes/Oceanía4.png</file>
+    </qresource>
+</RCC>
