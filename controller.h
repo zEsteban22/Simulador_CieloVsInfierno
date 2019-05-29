@@ -4,7 +4,7 @@
 #include "infierno.h"
 #include "mundo.h"
 #include "paraiso.h"
-//#include <../SmtpClient-for-Qt/src/SmtpMime>
+#include <SMTPEmail/src/SmtpMime>
 #include <QMessageBox>
 #include <QString>
 

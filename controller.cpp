@@ -1,7 +1,7 @@
 #include "controller.h"
 
 void Controller::enviarCorreo(string mensaje){
-	/*
+
 	SmtpClient smtp("smtp.gmail.com", 587, SmtpClient::TlsConnection);
 
 	smtp.setUser("cuentanivelbajo@gmail.com");
@@ -34,7 +34,7 @@ void Controller::enviarCorreo(string mensaje){
 								QString("No se ha podido enviar el correo"),QMessageBox::Ok).exec();
 
 	smtp.quit();
-	*/
+
 }
 
 Controller::Controller()
