@@ -15,7 +15,10 @@ bool ordenaQueue(Persona*e1, Persona*e2){
 	return e1->pecados[7]-e1->virtudes[7]>e2->pecados[7]-e2->virtudes[7];
 }
 
-void Infierno::condenar(Mundo mundo){
+string Infierno::condenar(Mundo mundo){
+	string log="";
+	char fecha[30];
+	time_t t;
 	QVector<QPair<Persona*,int>>vector;
 	for (int i=0;i<7;i++){
 		for (NodoLista *temp=mundo.lista.primero();temp!=nullptr;temp=temp->siguiente){
@@ -23,11 +26,21 @@ void Infierno::condenar(Mundo mundo){
 														 temp->persona->pecados[i]-temp->persona->virtudes[i]);
 			vector.insert(lower_bound(vector.begin(),vector.end(),par,mayorQue),par);
 		}
-		for(int j=0;j<vector.size()*0.05;j++)
-			aniadirAlInfierno(&familiasPorPecado[i],mundo.eliminar(vector[j].first));
+		for(int j=0;j<vector.size()*0.05;j++){
+			aniadirAlInfierno(familiasPorPecado+i,mundo.eliminar(vector[j].first));
+			log+=vector[j].first->nombre+" murió el ";
+			t=time(nullptr);
+			fecha[0]=0;
+			strftime(fecha,30, "%d/%m/%Y a las: %H:%M", localtime(&t));
+			log+=fecha;
+			log+=" condenado por "+to_string(vector[j].first->pecados[i])+" pecados de "+
+					 mundo.tiposPecados[i]+" y "+to_string(vector[j].first->virtudes[i])+
+					 " buenas acciones de "+mundo.tiposVirtudes[i]+" por el demonio "+nombresDemonios[i]+".\n";
+		}
 		sort(familiasPorPecado[i].begin(),familiasPorPecado[i].end(),ordenaHeap(i));
 		vector.clear();
 	}
+	return log;
 }
 
 void Infierno::aniadirAlInfierno(QVector<QPair<QString, avlFamilia> >*heap, Persona*p){
