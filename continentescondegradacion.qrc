@@ -25,5 +25,19 @@
         <file>Imagenes/Oceanía2.png</file>
         <file>Imagenes/Oceanía3.png</file>
         <file>Imagenes/Oceanía4.png</file>
+        <file>Imagenes/Fondos/Untitled (15) - copia.png</file>
+        <file>Imagenes/Fondos/Untitled (16) - copia.png</file>
+    </qresource>
+    <qresource prefix="/interfaz">
+        <file>Imagenes/Fondos/52f9e5574e112fb34a5e5793150511f2.png</file>
+        <file>Imagenes/Fondos/1531414255.jpg</file>
+        <file>Imagenes/Fondos/globalization-globe.jpg</file>
+        <file>Imagenes/Fondos/hqdefault.jpg</file>
+        <file>Imagenes/Fondos/Untitled (1).png</file>
+        <file>Imagenes/Fondos/Untitled (7).png</file>
+        <file>Imagenes/Fondos/Untitled (8).png</file>
+        <file>Imagenes/Fondos/Untitled (18).png</file>
+        <file>Imagenes/Fondos/dragon_del_infierno.jpg</file>
+        <file>Imagenes/Fondos/Untitled (16) - copia.png</file>
     </qresource>
 </RCC>
