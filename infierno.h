@@ -17,10 +17,9 @@ struct Infierno
 {
 		QVector<QPair<QString,avlFamilia>> familiasPorPecado[7];
 		std::string nombresDemonios[7];
-		void condenar(Mundo mundo);
+		string condenar(Mundo mundo);
 		void aniadirAlInfierno(QVector<QPair<QString,avlFamilia>>*heap,Persona*p);
 		QQueue<Persona*>*getMenosPecadores();
-		void logCondenacion(QString);
 		Infierno();
 };
 

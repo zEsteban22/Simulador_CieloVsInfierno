@@ -2,10 +2,11 @@
 #define CONTROLLER_H
 
 #include "infierno.h"
-#include "mainwindow.h"
 #include "mundo.h"
 #include "paraiso.h"
-
+//#include <../SmtpClient-for-Qt/src/SmtpMime>
+#include <QMessageBox>
+#include <QString>
 
 
 struct Controller
@@ -13,13 +14,13 @@ struct Controller
 		Mundo mundo;
 		Infierno infierno;
 		Paraiso paraiso;
-		MainWindow mw;
 		void mandarAlInfierno(){
-			infierno.condenar(mundo);
+			enviarCorreo(infierno.condenar(mundo));
 		}
 		void salvarPersonas(){
 			paraiso.salvarHumanos(&infierno);
 		}
+		void enviarCorreo(string mensaje);
 		Controller();
 };
 

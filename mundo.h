@@ -16,8 +16,8 @@ struct comparador
 struct Mundo
 {
 		QMap<QString,QMap<QString,avlFamilia>>familiasPorPais;
-		string nombres[1000],apellidos[1000],paises[100],profesiones[50],creencias[10];
-		string tiposPecados[7];
+		string nombres[1000],apellidos[1000],paises[100],profesiones[50],creencias[10],tiposPecados[7],
+		tiposVirtudes[7];
 		ArbolDelMundo arbol;
 		ListaPersonas lista;
 		QVector<Persona*>personasSinPapa;
@@ -35,32 +35,35 @@ struct Mundo
 		void reportePaisesMenosPecadores();
 		string reporteAccionesDeCiertaFamilia(string pais,string apellido,bool pecados){//La especificación de familia;
 			string salida="Pecados de la familia "+pais+"-"+apellido+"\n";
+			unsigned int initialLenght=salida.length();
 			QQueue<nodoPersona*>restantes;
 			nodoPersona*persona=familiasPorPais[QString::fromStdString(pais)][QString::fromStdString(apellido)].r;
 			while(persona!=nullptr||restantes.isEmpty()){
 				if(persona!=nullptr){
 					restantes.enqueue(persona->l);
 					restantes.enqueue(persona->r);
-					salida+="Pecados de "+persona->d->nombre+" "+persona->d->apellido;
+					salida+="Pecados de "+persona->d->nombre+" "+persona->d->apellido+"\n";
 					for(int i=0;i<8;i++)
-						salida+=!pecados?nombresVirtudes[i]:tiposPecados[i]+": "+to_string(pecados?persona->d->pecados[i]:persona->d->virtudes[i])+"\n";
+						salida+=pecados?tiposPecados[i]:tiposVirtudes[i]+": "+to_string(pecados?persona->d->pecados[i]:persona->d->virtudes[i])+"\n";
 				}
 				persona=restantes.dequeue();
 			}
-			return salida;
+			if (salida.length()>initialLenght)
+				return salida;
+			else return "";
 		}
 		void reportePecadosPorFamilia(){
-			for (string p : paises) {
-				for (string a: apellidos){
+			for (string p: paises)
+				for (string a: apellidos)
 					cout<<reporteAccionesDeCiertaFamilia(p,a,true);
-				}
-			}
 		}
 		void obrarBien();
 		void reportePaisesMasBuenaGente();
 		void reportePaisesMenosBuenaGente();
 		void reporteVirtudesPorFamilia(){
-
+			for (string p: paises)
+				for (string a: apellidos)
+					cout<<reporteAccionesDeCiertaFamilia(p,a,false);
 		}
 };
 
