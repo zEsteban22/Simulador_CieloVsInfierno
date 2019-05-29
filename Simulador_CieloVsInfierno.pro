@@ -65,7 +65,10 @@ HEADERS += \
 
 FORMS += \
         mainwindow.ui \
-        mapacondegradaciondecolor.ui
+        mapacondegradaciondecolor.ui \
+    consultarmundo.ui \
+    consultarcielo.ui \
+    consultainfierno.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
