@@ -42,7 +42,9 @@ SOURCES += \
         nodoarbol.cpp \
         paraiso.cpp \
         persona.cpp \
-        randomxd.cpp
+        randomxd.cpp \
+    consultarcielo.cpp \
+    consultarinfierno.cpp
 
 HEADERS += \
         arboldeangeles.h \
@@ -62,7 +64,9 @@ HEADERS += \
         nodolista.h \
         paraiso.h \
         persona.h \
-        randomxd.h
+        randomxd.h \
+    consultarinfierno.h \
+    consultarcielo.h
 
 FORMS += \
         mainwindow.ui \
