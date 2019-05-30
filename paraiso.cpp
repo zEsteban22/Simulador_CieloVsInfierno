@@ -5,7 +5,8 @@ void Paraiso::aniadirAlCielo(Persona*p, NodoAngel*salvador, string n){
 	arbolDeAngeles.insertar(p,salvador,n);
 }
 
-void Paraiso::salvarHumanos(Infierno*infierno){
+string Paraiso::salvarHumanos(Infierno infierno){
+	string log="";
 	int cantSalvaciones=static_cast<int>(pow(3,arbolDeAngeles.altura));
 	string generacion="G"+to_string(arbolDeAngeles.altura);
 	QVector<string>nombresAniadidosEstaGeneracion;
@@ -14,17 +15,21 @@ void Paraiso::salvarHumanos(Infierno*infierno){
 	string nombre;
 	Persona*persona;
 	arbolDeAngeles.altura++;
-	QQueue<Persona*>*menosPecadores=infierno->getMenosPecadores();
+	QQueue<Persona*>*menosPecadores=infierno.getMenosPecadores();
 	for (int i=0;i<cantSalvaciones;i++){
 		nombre=nombresDeAngeles[getRandomInt(0,10)];
 		persona=menosPecadores->dequeue();
 		nombresAniadidosEstaGeneracion.append(nombre);
 		if (i%3==0)
 			salvadorActual=ultimoNivelDeAngeles.dequeue();
+		log+="Humano #"+to_string(persona->id)+" "+persona->nombre+" "+persona->apellido+" salvado por "
+				 +salvadorActual->nombre+" por "+to_string(persona->pecados[7])+" pecados vs "+
+				to_string(persona->virtudes[7])+" buenas acciones.\n";
 		arbolDeAngeles.insertar(persona,salvadorActual,
 														nombre+" ("+to_string(nombresAniadidosEstaGeneracion.count(nombre))+
 														") "+generacion);
 	}
+	return log;
 }
 
 Paraiso::Paraiso()

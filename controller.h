@@ -18,7 +18,7 @@ struct Controller
 			enviarCorreo(infierno.condenar(mundo));
 		}
 		void salvarPersonas(){
-			paraiso.salvarHumanos(&infierno);
+			enviarCorreo(paraiso.salvarHumanos(infierno));
 		}
 		void enviarCorreo(string mensaje);
 		Controller();

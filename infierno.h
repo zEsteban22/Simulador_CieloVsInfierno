@@ -13,6 +13,7 @@ struct ordenaHeap{
 };
 bool ordenaQueue(Persona*e1,Persona*e2);
 QQueue<Persona*>::iterator insert_sorted( QQueue<Persona*> & queue, Persona* const& item);
+
 struct Infierno
 {
 		QVector<QPair<QString,avlFamilia>> familiasPorPecado[7];
@@ -20,6 +21,12 @@ struct Infierno
 		string condenar(Mundo mundo);
 		void aniadirAlInfierno(QVector<QPair<QString,avlFamilia>>*heap,Persona*p);
 		QQueue<Persona*>*getMenosPecadores();
+		void mostrarDemonios();
+		int cantidadDeHumanos();
+		int promedioDePecados();
+		int cantMaxPecados();
+		int cantMinPecados();
+		void estadisticaInfierno();
 		Infierno();
 };
 

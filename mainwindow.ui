@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
+    <width>1288</width>
     <height>768</height>
    </rect>
   </property>
@@ -14,28 +14,12 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>-1</y>
-      <width>1000</width>
-      <height>711</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap>Imagenes/Fondos/hqdefault.jpg</pixmap>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>510</x>
-      <y>150</y>
-      <width>291</width>
+      <x>420</x>
+      <y>160</y>
+      <width>471</width>
       <height>91</height>
      </rect>
     </property>
@@ -52,8 +36,8 @@
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>590</x>
-      <y>110</y>
+      <x>550</x>
+      <y>90</y>
       <width>221</width>
       <height>91</height>
      </rect>
@@ -125,14 +109,39 @@
      <string>Consultar Mundo</string>
     </property>
    </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1291</width>
+      <height>701</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="continentescondegradacion.qrc">:/interfaz/Imagenes/Fondos/hqdefault.jpg</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <zorder>label</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_3</zorder>
+   <zorder>pushButton</zorder>
+   <zorder>pushButton_2</zorder>
+   <zorder>pushButton_3</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1000</width>
-     <height>17</height>
+     <width>1288</width>
+     <height>26</height>
     </rect>
    </property>
   </widget>
@@ -147,6 +156,8 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="continentescondegradacion.qrc"/>
+ </resources>
  <connections/>
 </ui>

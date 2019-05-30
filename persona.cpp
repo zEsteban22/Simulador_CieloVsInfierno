@@ -8,26 +8,32 @@ void sumaDeArrays(int arr1[], int arr2[]){
 Persona::Persona(std::string n, std::string a, std::string p, std::string c, std::string pf, std::string e, int i):id(i),nombre(n),apellido(a),pais(p),creencia(c),profesion(pf),email(e),
 	momentoNacimiento(time(nullptr)),pecados{0,0,0,0,0,0,0},virtudes{0,0,0,0,0,0,0},hijos(){
 }
-
-void Persona::pecar(){
+void Persona::modificarAcciones(bool pecados){
+	int*acciones=pecados?this->pecados:virtudes;
 	int cantPecados;
 	for (int i=0;i<7;i++){
 		cantPecados=getRandomInt(0,100);
-		pecados[i]+=cantPecados;
-		for (Persona*hijo : hijos) 
-			hijo->heredarPecado(i,cantPecados/2);
+		acciones[i]+=cantPecados;
+		acciones[7]+=cantPecados;
+		for (Persona*hijo : hijos){
+			acciones=pecados?hijo->pecados:hijo->virtudes;
+			acciones[i]+=cantPecados/2;
+			acciones[7]+=cantPecados/2;
+			for (Persona* nieto : hijo->hijos){
+				acciones=pecados?nieto->pecados:nieto->virtudes;
+				acciones[i]+=cantPecados/4;
+				acciones[7]+=cantPecados/4;
+			}
+		}
 	}
 }
-
-void Persona::heredarPecado(int indicePecado, int cantPecados){
-	pecados[indicePecado]+=cantPecados;
-	for (Persona* hijo : hijos)
-		hijo->heredarPecado(indicePecado,cantPecados/2);
+void Persona::pecar(){
+	modificarAcciones(true);
 }
 
+
 void Persona::obrarBien(){
-	for(int i=0;i<7;i++)
-		virtudes[i]+=getRandomInt(0,100);
+	modificarAcciones(false);
 }
 
 int Persona::sumaPecados(){

@@ -13,6 +13,13 @@ struct ArbolDeAngeles
 		ArbolDeAngeles();
 		QQueue<NodoAngel*>getUltimoNivel(){
 			QQueue<NodoAngel*>q;
+			NodoAngel*temp=dios;
+			while(temp->hijo1!=nullptr){
+				q.enqueue(temp->hijo1);
+				q.enqueue(temp->hijo2);
+				q.enqueue(temp->hijo3);
+				temp=q.dequeue();
+			}
 			return q;
 		}
 };

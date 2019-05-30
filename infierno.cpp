@@ -28,7 +28,7 @@ string Infierno::condenar(Mundo mundo){
 		}
 		for(int j=0;j<vector.size()*0.05;j++){
 			aniadirAlInfierno(familiasPorPecado+i,mundo.eliminar(vector[j].first));
-			log+=vector[j].first->nombre+" murió el ";
+			log+="Humano #"+to_string(vector[j].first->id)+" "+vector[j].first->nombre+" "+vector[j].first->apellido+" murió el ";
 			t=time(nullptr);
 			fecha[0]=0;
 			strftime(fecha,30, "%d/%m/%Y a las: %H:%M", localtime(&t));

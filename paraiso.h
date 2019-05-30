@@ -14,7 +14,7 @@ struct Paraiso
 		string nombresDeAngeles[10]={"Miguel","Nuriel","Aniel","Rafael","Gabriel","Shamsiel","Raguel",
 																 "Uriel","Azrael","Sariel"};
 		void aniadirAlCielo(Persona*p,NodoAngel*salvador,string n);
-		void salvarHumanos(Infierno*infierno);
+		string salvarHumanos(Infierno infierno);
 		Paraiso();
 };
 

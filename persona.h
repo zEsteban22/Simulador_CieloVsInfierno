@@ -16,8 +16,8 @@ struct Persona
 		Persona(std::string n,std::string a,std::string p,std::string c,std::string pf,std::string e,
 						int i);
 		void pecar();
-		void heredarPecado(int indicePecado,int cantPecados);
 		void obrarBien();
+		void modificarAcciones(bool);
 		int sumaPecados();
 		int sumaVirtudes();
 		std::string to_string(int cantTaps=0);

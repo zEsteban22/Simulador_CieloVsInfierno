@@ -30,6 +30,7 @@ SOURCES += \
         avl.cpp \
         avlcielo.cpp \
         cielohash.cpp \
+        consultarmundo.cpp \
         controller.cpp \
         infierno.cpp \
         listapersonas.cpp \
@@ -39,7 +40,6 @@ SOURCES += \
         mundo.cpp \
         nodoangel.cpp \
         nodoarbol.cpp \
-        nodopersona.cpp \
         paraiso.cpp \
         persona.cpp \
         randomxd.cpp
@@ -50,6 +50,7 @@ HEADERS += \
         avlFamilias.h \
         avlcielo.h \
         cielohash.h \
+        consultarmundo.h \
         controller.h \
         infierno.h \
         listapersonas.h \
