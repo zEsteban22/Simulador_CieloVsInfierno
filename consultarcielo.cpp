@@ -3,7 +3,7 @@
 
 ConsultarCielo::ConsultarCielo(QWidget *parent) :
 	QDialog(parent),
-	ui(new Ui::Dialog)
+	ui(new Ui::ConsultarCielo)
 {
 	ui->setupUi(this);
 
@@ -12,10 +12,5 @@ ConsultarCielo::ConsultarCielo(QWidget *parent) :
 ConsultarCielo::~ConsultarCielo()
 {
 	delete ui;
-}
-
-void ConsultarCielo::on_pushButton_clicked()
-{
-//	insertarPersonas(ui->spinBox->value());
 }
 

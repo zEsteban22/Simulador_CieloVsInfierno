@@ -1,9 +1,9 @@
 #include "consultarinfierno.h"
-#include "ui_ConsultaInfierno.h"
+#include "ui_consultarinfierno.h"
 
 ConsultarInfierno::ConsultarInfierno(QWidget *parent) :
 	QDialog(parent),
-	ui(new Ui::Dialog)
+	ui(new Ui::ConsultarInfierno)
 {
 	ui->setupUi(this);
 
@@ -12,10 +12,5 @@ ConsultarInfierno::ConsultarInfierno(QWidget *parent) :
 ConsultarInfierno::~ConsultarInfierno()
 {
 	delete ui;
-}
-
-void ConsultarInfierno::on_pushButton_clicked()
-{
-//	insertarPersonas(ui->spinBox->value());
 }
 

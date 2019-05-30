@@ -8,7 +8,7 @@
 #include <QDialog>
 
 namespace Ui {
-class Dialog;
+class ConsultarMundo;
 }
 
 class ConsultarMundo : public QDialog
@@ -19,18 +19,8 @@ class ConsultarMundo : public QDialog
 		explicit ConsultarMundo(QWidget *parent = nullptr);
         ~ConsultarMundo();
 
-
-	private slots:
-		void on_pushButton_clicked();
-
-		void on_spinBox_valueChanged(const QString &arg1);
-
-        void on_spinBox_valueChanged(int arg1);
-
-        void on_doubleSpinBox_valueChanged(double arg1);
-
-private:
-		Ui::Dialog *ui;
+	private:
+		Ui::ConsultarMundo *ui;
 };
 
 #endif // MAINWINDOW_H

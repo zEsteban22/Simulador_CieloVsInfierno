@@ -42,6 +42,6 @@ Controller::Controller()
 
 }
 
-bool comparaPersona::operator()(Persona *const &e1, Persona *const &e2){
-	return pecados?e1->pecados[7]<e2->pecados[7]:e1->virtudes[7]<e2->virtudes[7];
+bool comparaPersona::operator()(QPair<Persona*,string>const &e1, QPair<Persona*,string>const &e2){
+	return pecados?e1.first->pecados[7]<e2.first->pecados[7]:e1.first->virtudes[7]<e2.first->virtudes[7];
 }

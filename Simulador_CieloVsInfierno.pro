@@ -69,11 +69,11 @@ HEADERS += \
     consultarcielo.h
 
 FORMS += \
+  consultarinfierno.ui \
         mainwindow.ui \
         mapacondegradaciondecolor.ui \
     consultarmundo.ui \
-    consultarcielo.ui \
-    consultainfierno.ui
+    consultarcielo.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

@@ -4,7 +4,7 @@
 #include <QDialog>
 
 namespace Ui {
-class Dialog;
+class ConsultarInfierno;
 }
 
 class ConsultarInfierno : public QDialog
@@ -15,13 +15,8 @@ class ConsultarInfierno : public QDialog
         explicit ConsultarInfierno(QWidget *parent = nullptr);
         ~ConsultarInfierno();
 
-	private slots:
-		void on_pushButton_clicked();
-
-		void on_spinBox_valueChanged(const QString &arg1);
-
 	private:
-		Ui::Dialog *ui;
+		Ui::ConsultarInfierno *ui;
 };
 
 #endif // MAINWINDOW_H

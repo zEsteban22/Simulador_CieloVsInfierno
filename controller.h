@@ -11,7 +11,7 @@
 struct comparaPersona {
 		bool pecados;
 		comparaPersona(bool p):pecados(p){}
-		bool operator()(Persona*const&e1,Persona*const&e2);
+		bool operator()(QPair<Persona*,string>const&e1,QPair<Persona*,string>const&e2);
 };
 
 struct Controller
