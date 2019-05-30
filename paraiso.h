@@ -15,6 +15,7 @@ struct Paraiso
 																 "Uriel","Azrael","Sariel"};
 		void aniadirAlCielo(Persona*p,NodoAngel*salvador,string n);
 		string salvarHumanos(Infierno infierno);
+		int**sumaAcciones();
 		Paraiso();
 };
 

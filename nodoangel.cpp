@@ -1,7 +1,9 @@
 #include "nodoangel.h"
 
-void NodoAngel::insertar(Persona*p, std::string nombre){
-	(hijo1==nullptr?hijo1:hijo2==nullptr?hijo2:hijo3)=new NodoAngel(nombre,p);
+NodoAngel* NodoAngel::insertar(Persona*p, std::string nombre){
+	NodoAngel*n=new NodoAngel(nombre,p);
+	(hijo1==nullptr?hijo1:hijo2==nullptr?hijo2:hijo3)=n;
+	return n;
 }
 
 NodoAngel::NodoAngel(std::string n,Persona*p):persona(p),nombre(n)

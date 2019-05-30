@@ -107,7 +107,7 @@ void Mundo::reporte(bool ascendente, bool pecadores, int cant){
 void Mundo::imprimirResultado(QVector<QPair<int*, QString> > resultado, int cant){
 	QString salida="";
 	for (int i = 0; i < cant&&i<resultado.size(); ++i)
-		salida+=QString::number(i)+") "+resultado[i].second+" con "+QString::number(resultado[i].first[8])+"\n";
+		salida+=QString::number(i+1)+") "+resultado[i].second+" con "+QString::number(resultado[i].first[7])+"\n";
 	cout<<salida.toStdString();
 }
 

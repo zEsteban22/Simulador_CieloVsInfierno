@@ -2,8 +2,8 @@
 
 
 
-void ArbolDeAngeles::insertar(Persona*p, NodoAngel*s, std::string n){
-	s->insertar(p,n);
+NodoAngel* ArbolDeAngeles::insertar(Persona*p, NodoAngel*s, std::string n){
+	return s->insertar(p,n);
 }
 
 ArbolDeAngeles::ArbolDeAngeles(){

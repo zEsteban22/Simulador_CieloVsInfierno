@@ -27,8 +27,8 @@ CONFIG += c++1z
 SOURCES += \
         arboldeangeles.cpp \
         arboldelmundo.cpp \
-        avl.cpp \
         avlcielo.cpp \
+        avlfamilia.cpp \
         cielohash.cpp \
         consultarmundo.cpp \
         controller.cpp \
@@ -47,8 +47,8 @@ SOURCES += \
 HEADERS += \
         arboldeangeles.h \
         arboldelmundo.h \
-        avlFamilias.h \
         avlcielo.h \
+        avlfamilia.h \
         cielohash.h \
         consultarmundo.h \
         controller.h \

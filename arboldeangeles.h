@@ -9,7 +9,7 @@ struct ArbolDeAngeles
 {
 		NodoAngel*dios;
 		int altura;
-		void insertar(Persona*p,NodoAngel*s,std::string n);
+		NodoAngel* insertar(Persona*p,NodoAngel*s,std::string n);
 		ArbolDeAngeles();
 		QQueue<NodoAngel*>getUltimoNivel(){
 			QQueue<NodoAngel*>q;

@@ -1,6 +1,6 @@
 #ifndef INFIERNO_H
 #define INFIERNO_H
-#include "avlFamilias.h"
+#include "avlfamilia.h"
 #include "mundo.h"
 #include <QVector>
 #include <QtAlgorithms>
@@ -27,6 +27,27 @@ struct Infierno
 		int cantMaxPecados();
 		int cantMinPecados();
 		void estadisticaInfierno();
+		int**sumaAcciones(){
+			static int acciones[2][7]={{0,0,0,0,0,0,0},{0,0,0,0,0,0,0}};
+			QQueue<nodoPersona*>restantes;
+			nodoPersona*persona;
+			for(int i=0;i<7;i++)
+				for(QPair<QString,avlFamilia> familia:familiasPorPecado[i]){
+					persona=familia.second.r;
+					while(persona!=nullptr||!restantes.isEmpty()){
+						if (persona!=nullptr){
+							restantes.enqueue(persona->l);
+							restantes.enqueue(persona->r);
+							for(int j=0;j<7;j++){
+								acciones[0][j]+=persona->d->pecados[j];
+								acciones[1][j]+=persona->d->virtudes[j];
+							}
+						}
+						persona=restantes.dequeue();
+					}
+				}
+			return (int**)acciones;
+		}
 		Infierno();
 };
 

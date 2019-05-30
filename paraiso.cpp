@@ -25,11 +25,31 @@ string Paraiso::salvarHumanos(Infierno infierno){
 		log+="Humano #"+to_string(persona->id)+" "+persona->nombre+" "+persona->apellido+" salvado por "
 				 +salvadorActual->nombre+" por "+to_string(persona->pecados[7])+" pecados vs "+
 				to_string(persona->virtudes[7])+" buenas acciones.\n";
-		arbolDeAngeles.insertar(persona,salvadorActual,
-														nombre+" ("+to_string(nombresAniadidosEstaGeneracion.count(nombre))+
-														") "+generacion);
+		cieloHash.insertar(persona->id,persona,arbolDeAngeles.insertar(
+												 persona,salvadorActual,
+												 nombre+" ("+to_string(nombresAniadidosEstaGeneracion.count(nombre))+
+												 ") "+generacion));
 	}
 	return log;
+}
+
+int**Paraiso::sumaAcciones(){
+	static int acciones[2][7]={{0,0,0,0,0,0,0},{0,0,0,0,0,0,0}};
+	QQueue<NodoAngel*>restantes;
+	NodoAngel*angel=arbolDeAngeles.dios;
+	while(angel!=nullptr){
+		restantes.enqueue(angel->hijo1);
+		restantes.enqueue(angel->hijo2);
+		restantes.enqueue(angel->hijo3);
+		if (angel->persona!=nullptr){
+			for(int j=0;j<7;j++){
+				acciones[0][j]+=angel->persona->pecados[j];
+				acciones[1][j]+=angel->persona->virtudes[j];
+			}
+		}
+		angel=restantes.dequeue();
+	}
+	return (int**)acciones;
 }
 
 Paraiso::Paraiso()

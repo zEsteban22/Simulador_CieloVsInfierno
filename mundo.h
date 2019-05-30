@@ -1,7 +1,7 @@
 #ifndef MUNDO_H
 #define MUNDO_H
 #include "arboldelmundo.h"
-#include "avlFamilias.h"
+#include "avlfamilia.h"
 #include <QString>
 #include <iostream>
 #include <QMap>
