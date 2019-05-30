@@ -35,8 +35,8 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>480</x>
-     <y>260</y>
+     <x>290</x>
+     <y>60</y>
      <width>121</width>
      <height>28</height>
     </rect>
@@ -48,10 +48,30 @@
   <widget class="QSpinBox" name="spinBox">
    <property name="geometry">
     <rect>
-     <x>430</x>
-     <y>260</y>
-     <width>42</width>
-     <height>22</height>
+     <x>130</x>
+     <y>50</y>
+     <width>131</width>
+     <height>51</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="textBrowser">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>120</y>
+     <width>256</width>
+     <height>192</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTextBrowser" name="textBrowser_2">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>350</y>
+     <width>256</width>
+     <height>192</height>
     </rect>
    </property>
   </widget>
