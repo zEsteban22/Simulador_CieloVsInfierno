@@ -19,7 +19,6 @@ class ConsultarMundo : public QDialog
 		explicit ConsultarMundo(QWidget *parent = nullptr);
         ~ConsultarMundo();
 
-	private:
 		Ui::ConsultarMundo *ui;
 };
 

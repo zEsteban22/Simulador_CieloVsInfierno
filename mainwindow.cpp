@@ -16,26 +16,16 @@ MainWindow::~MainWindow()
 	delete ui;
 }
 
-void MainWindow::on_pushButton_clicked()
-{
-		this->close();
-		ConsultarInfierno ci;
-		ci.setModal(true);
-		ci.exec();
+QPushButton*MainWindow::getBoton(){
+	return ui->pushButton;
 }
 
-void MainWindow::on_pushButton_3_clicked()
-{
-	this->close();
-	ConsultarMundo cm;
-	cm.setModal(1);
-	cm.exec();
+QPushButton*MainWindow::getBoton2(){
+	return ui->pushButton_2;
 }
 
-void MainWindow::on_pushButton_2_clicked()
-{
-	this->close();
-	ConsultarCielo cc;
-	cc.setModal(1);
-	cc.exec();
+QPushButton*MainWindow::getBoton3(){
+	return ui->pushButton_3;
 }
+
+

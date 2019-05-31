@@ -15,8 +15,7 @@ class ConsultarCielo : public QDialog
         explicit ConsultarCielo(QWidget *parent = nullptr);
         ~ConsultarCielo();
 
-    private:
-				Ui::ConsultarCielo *ui;
+		Ui::ConsultarCielo *ui;
 };
 
 #endif // MAINWINDOW_H

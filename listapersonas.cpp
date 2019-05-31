@@ -17,7 +17,8 @@ int ListaPersonas::size(){
 
 void ListaPersonas::insertar(Persona*p){
 	listaIndexada.append(NodoLista(p,listaIndexada.empty()?nullptr:&listaIndexada.last()));
-	listaIndexada.last().anterior->siguiente=&listaIndexada.last();
+	if(listaIndexada.last().anterior!=nullptr)
+		listaIndexada.last().anterior->siguiente=&listaIndexada.last();
 }
 
 void ListaPersonas::eliminar(NodoLista*n){

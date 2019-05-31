@@ -113,5 +113,5 @@ Persona*ArbolDelMundo::getPersonaPorId(int i){
 
 bool ArbolDelMundo::existe(int i){
 	NodoLista*n=getParaInsertar(i);
-	return n==nullptr||n->persona->id==i;
+	return n!=nullptr&&n->persona->id==i;
 }

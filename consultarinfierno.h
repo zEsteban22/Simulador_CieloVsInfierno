@@ -15,7 +15,6 @@ class ConsultarInfierno : public QDialog
         explicit ConsultarInfierno(QWidget *parent = nullptr);
         ~ConsultarInfierno();
 
-	private:
 		Ui::ConsultarInfierno *ui;
 };
 

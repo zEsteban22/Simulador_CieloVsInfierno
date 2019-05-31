@@ -27,6 +27,7 @@
         <file>Imagenes/Oceanía4.png</file>
         <file>Imagenes/Fondos/Untitled (15) - copia.png</file>
         <file>Imagenes/Fondos/Untitled (16) - copia.png</file>
+        <file>datos.db</file>
     </qresource>
     <qresource prefix="/interfaz">
         <file>Imagenes/Fondos/52f9e5574e112fb34a5e5793150511f2.png</file>
