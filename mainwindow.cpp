@@ -24,8 +24,16 @@ QPushButton*MainWindow::getBoton2(){
 	return ui->pushButton_2;
 }
 
-QPushButton*MainWindow::getBoton3(){
-	return ui->pushButton_3;
+QPushButton *MainWindow::getBoton3(){
+    return ui->pushButton_3;
 }
+
+QPushButton *MainWindow::getBoton4(){
+    return ui->pushButton_4;
+}
+
+
+
+
 
 
