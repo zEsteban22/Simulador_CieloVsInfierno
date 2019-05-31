@@ -12,6 +12,12 @@ struct NodoArbol
 		NodoArbol*hijoIzquierdo,*hijoDerecho;
 		NodoArbol();
 		NodoArbol(NodoLista*n=nullptr);
+		~NodoArbol(){
+			if(hijoIzquierdo!=nullptr)
+				hijoIzquierdo->~NodoArbol();
+			if(hijoDerecho!=nullptr)
+				hijoDerecho->~NodoArbol();
+		}
 		void corrimientoALaIzquierda();
 };
 

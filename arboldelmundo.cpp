@@ -10,7 +10,9 @@ void ArbolDelMundo::aniadirAlArbol(NodoLista*nodo){
 }
 
 void ArbolDelMundo::aniadirAlArbol(NodoArbol*nodo){
-	return aniadirAlArbol(nodo,raiz);
+	if (raiz!=nullptr)
+		return aniadirAlArbol(nodo,raiz);
+	raiz=nodo;
 }
 
 void ArbolDelMundo::aniadirAlArbol(NodoArbol*nodo, NodoArbol*raiz){
@@ -63,11 +65,12 @@ void ArbolDelMundo::aniadirNivel(NodoArbol*nodo, NodoArbol*raiz){
 }
 
 void ArbolDelMundo::completarArbol(ListaPersonas*lista){
+	limpiarArbol();
 	aniadirAlArbol(lista->getByIndex(lista->size()/2));
 	completarArbol(lista,0,lista->size());
 	NodoArbol*temp=raiz;
 	cantNodos=1;
-	while (temp!=nullptr){
+	while (temp->hijoIzquierdo!=nullptr){
 		temp=temp->hijoIzquierdo;
 		cantNodos*=2;
 	}
@@ -75,7 +78,7 @@ void ArbolDelMundo::completarArbol(ListaPersonas*lista){
 }
 
 void ArbolDelMundo::completarArbol(ListaPersonas*lista, int inicio, int fin){
-	if (fin-inicio>100){
+	if (fin-inicio>=100){
 		aniadirAlArbol(lista->getByIndex(inicio));
 		aniadirAlArbol(lista->getByIndex((inicio+fin)/2));
 		completarArbol(lista,inicio,fin/2);
@@ -98,12 +101,12 @@ void ArbolDelMundo::vaciarArbol(){
 NodoLista*ArbolDelMundo::getParaInsertar(int i){
 	if (raiz==nullptr) return nullptr;
 	NodoArbol*temp=raiz;
-	while((*temp).hijoDerecho!=nullptr)
+	while(temp->hijoDerecho!=nullptr)
 		temp=i<(*temp).valor?(*temp).hijoIzquierdo:(*temp).hijoDerecho;
 	NodoLista*temp2=temp->nodoLista;
-	while(temp2->persona->id<i)
+	while(temp2!=nullptr&&temp2->siguiente!=nullptr&&temp2->siguiente->persona->id<i)
 		temp2=temp2->siguiente;
-	return temp2;
+	return(temp2!=nullptr&&temp2->persona->id>i)?nullptr:temp2;
 }
 
 Persona*ArbolDelMundo::getPersonaPorId(int i){

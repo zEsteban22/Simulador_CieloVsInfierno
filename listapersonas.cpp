@@ -1,28 +1,42 @@
 #include "listapersonas.h"
 
 NodoLista*ListaPersonas::primero(){
-	return &listaIndexada.first();
+	return p;
 }
 
-ListaPersonas::ListaPersonas():listaIndexada(){
+ListaPersonas::ListaPersonas():p(nullptr),s(0){
 }
 
 NodoLista*ListaPersonas::getByIndex(int i){
-	return &listaIndexada[i];
+	NodoLista*temp=p;
+	while(i-->0&&temp!=nullptr)
+		temp=temp->siguiente;
+	return temp;
 }
 
 int ListaPersonas::size(){
-	return listaIndexada.size();
+	return s;
 }
 
-void ListaPersonas::insertar(Persona*p){
-	listaIndexada.append(NodoLista(p,listaIndexada.empty()?nullptr:&listaIndexada.last()));
-	if(listaIndexada.last().anterior!=nullptr)
-		listaIndexada.last().anterior->siguiente=&listaIndexada.last();
+void ListaPersonas::insertar(Persona*p,NodoLista*anterior){
+	NodoLista*nuevo=new NodoLista(p,anterior);
+	s++;
+	if(this->p==nullptr)
+		this->p=nuevo;
+	else if(anterior==nullptr){
+		this->p->anterior=nuevo;
+		this->p->anterior->siguiente=this->p;
+		this->p=this->p->anterior;
+	}
+	else {
+		if (anterior->siguiente!=nullptr)
+			anterior->siguiente->anterior=nuevo;
+		nuevo->siguiente=anterior->siguiente;
+		anterior->siguiente=nuevo;
+	}
 }
 
 void ListaPersonas::eliminar(NodoLista*n){
 	n->anterior->siguiente=n->siguiente;
 	n->siguiente->anterior=n->anterior;
-	listaIndexada.removeOne(*n);
 }
