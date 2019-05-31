@@ -7,12 +7,13 @@
 
 struct ListaPersonas
 {
-		QVector<NodoLista>listaIndexada;
+		NodoLista*p;
+		int s;
 		NodoLista*primero();
 		ListaPersonas();
 		NodoLista*getByIndex(int i);
 		int size();
-		void insertar(Persona*p);
+		void insertar(Persona*p,NodoLista*);
 		void eliminar(NodoLista*n);
 };
 

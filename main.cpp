@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 
 	QApplication a(argc, argv);
 	Mundo m;
-	m.insertarPersonas(100);
+	m.insertarPersonas(1000);
 	m.pecar();
 	m.obrarBien();
 	m.reportePaisesMasPecadores();

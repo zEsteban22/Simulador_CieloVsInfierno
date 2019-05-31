@@ -34,7 +34,7 @@ void Mundo::insertarNuevaPersona(){
 			,"xllestebanllx@gmail.com",id);
 	familiasPorPais[QString::fromStdString(nuevaPersona->pais)]
 			[QString::fromStdString(nuevaPersona->apellido)].insert(nuevaPersona);
-	lista.insertar(nuevaPersona);
+	lista.insertar(nuevaPersona,arbol.getParaInsertar(nuevaPersona->id));
 	if (arbol.cantNodos<lista.size()*0.01)
 		arbol.completarArbol(&lista);
 	char cantHijos=static_cast<char>(getRandomInt(0,9));

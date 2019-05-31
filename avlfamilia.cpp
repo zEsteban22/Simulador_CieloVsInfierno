@@ -63,6 +63,8 @@ nodoPersona *avlFamilia::balance(nodoPersona *t) {
 }
 
 nodoPersona*avlFamilia::insert(Persona*d){
+	if (r==nullptr)
+		return r=new nodoPersona(d);
 	return insert(r,d);
 }
 

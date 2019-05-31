@@ -9,6 +9,11 @@ struct ArbolDelMundo
 		int cantNodos=0;
 		NodoArbol*raiz;
 		ArbolDelMundo();
+		void limpiarArbol(){
+			if(raiz!=nullptr)
+				raiz->~NodoArbol();
+			raiz=nullptr;
+		}
 		void aniadirAlArbol(NodoLista*nodo);
 		void  aniadirAlArbol(NodoArbol*nodo);
 		void aniadirAlArbol(NodoArbol*nodo,NodoArbol*raiz);
