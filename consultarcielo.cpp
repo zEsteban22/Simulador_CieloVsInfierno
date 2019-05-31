@@ -14,3 +14,10 @@ ConsultarCielo::~ConsultarCielo()
 	delete ui;
 }
 
+QPushButton*ConsultarCielo::getButton(){
+	return ui->pushButton;
+}
+
+
+
+
