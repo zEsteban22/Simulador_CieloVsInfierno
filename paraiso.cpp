@@ -1,11 +1,11 @@
-#include "paraiso.h"
+#include "cielo.h"
 
-void Paraiso::aniadirAlCielo(Persona*p, NodoAngel*salvador, string n){
+void Cielo::aniadirAlCielo(Persona*p, NodoAngel*salvador, string n){
 	cieloHash.insertar(p->id,p,salvador);
 	arbolDeAngeles.insertar(p,salvador,n);
 }
 
-string Paraiso::salvarHumanos(Infierno infierno){
+string Cielo::salvarHumanos(Infierno infierno){
 	string log="";
 	int cantSalvaciones=static_cast<int>(pow(3,arbolDeAngeles.altura));
 	string generacion="G"+to_string(arbolDeAngeles.altura);
@@ -33,7 +33,7 @@ string Paraiso::salvarHumanos(Infierno infierno){
 	return log;
 }
 
-int**Paraiso::sumaAcciones(){
+int**Cielo::sumaAcciones(){
 	static int acciones[2][7]={{0,0,0,0,0,0,0},{0,0,0,0,0,0,0}};
 	QQueue<NodoAngel*>restantes;
 	NodoAngel*angel=arbolDeAngeles.dios;
@@ -52,7 +52,7 @@ int**Paraiso::sumaAcciones(){
 	return (int**)acciones;
 }
 
-Paraiso::Paraiso()
+Cielo::Cielo()
 {
 
 }

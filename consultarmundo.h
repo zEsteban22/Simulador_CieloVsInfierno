@@ -6,6 +6,7 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QDialog>
+#include <QCloseEvent>
 
 namespace Ui {
 class ConsultarMundo;
@@ -17,21 +18,27 @@ class ConsultarMundo : public QDialog
 
 	public:
 		explicit ConsultarMundo(QWidget *parent = nullptr);
-        ~ConsultarMundo();
+		~ConsultarMundo();
 
 		Ui::ConsultarMundo *ui;
-        QPushButton*getInsertaPersona();
-        QPushButton*getVolver();
-        QPushButton*getPecarObrar();
-        QPushButton*getEstadoPecados();
-        QPushButton*getPaisesPecadores();
-        QPushButton*getPaisesMenosPecadores();
-        QPushButton*getMapaDegradacionPecados();
-        QPushButton*getPaisesVirtuosos();
-        QPushButton*getMenosVirtuosos();
-        QPushButton*getMapaDecradacionVirtudes();
-        QSpinBox*getSpinboxInsertarPersona();
-        QSpinBox*getSpinboxInsertarID();
+		QPushButton*getInsertaPersona();
+		QPushButton*getVolver();
+		QPushButton*getPecarObrar();
+		QPushButton*getEstadoPecados();
+		QPushButton*getPaisesPecadores();
+		QPushButton*getPaisesMenosPecadores();
+		QPushButton*getMapaDegradacionPecados();
+		QPushButton*getPaisesVirtuosos();
+		QPushButton*getMenosVirtuosos();
+		QPushButton*getMapaDecradacionVirtudes();
+		QSpinBox*getSpinboxInsertarPersona();
+		QSpinBox*getSpinboxInsertarID();
+		virtual void closeEvent(QCloseEvent*e){
+			e->ignore();
+			emit cerrar();
+		}
+	signals:
+		void cerrar();
 
 };
 

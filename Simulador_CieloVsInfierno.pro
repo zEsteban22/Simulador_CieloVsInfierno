@@ -29,6 +29,7 @@ SOURCES += \
         arboldelmundo.cpp \
         avlcielo.cpp \
         avlfamilia.cpp \
+  cielo.cpp \
         cielohash.cpp \
         consultarmundo.cpp \
         controller.cpp \
@@ -40,8 +41,6 @@ SOURCES += \
         mundo.cpp \
         nodoangel.cpp \
         nodoarbol.cpp \
-        paraiso.cpp \
-        persona.cpp \
         randomxd.cpp \
     consultarcielo.cpp \
     consultarinfierno.cpp
@@ -51,6 +50,7 @@ HEADERS += \
         arboldelmundo.h \
         avlcielo.h \
         avlfamilia.h \
+  cielo.h \
         cielohash.h \
         consultarmundo.h \
         controller.h \
@@ -62,7 +62,6 @@ HEADERS += \
         nodoangel.h \
         nodoarbol.h \
         nodolista.h \
-        paraiso.h \
         persona.h \
         randomxd.h \
     consultarinfierno.h \

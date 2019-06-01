@@ -3,7 +3,7 @@
 
 #include "infierno.h"
 #include "mundo.h"
-#include "paraiso.h"
+#include "cielo.h"
 #include <SMTPEmail/src/SmtpMime>
 #include <QMessageBox>
 #include <QString>
@@ -18,62 +18,37 @@ struct comparaPersona {
 		bool operator()(QPair<Persona*,string>const&e1,QPair<Persona*,string>const&e2);
 };
 
-struct Controller:QObject
+struct Controller:public QObject
 {
+		Q_OBJECT
 		Mundo mundo;
 		Infierno infierno;
-		Paraiso paraiso;
+		Cielo cielo;
 		ConsultarCielo cc;
 		ConsultarInfierno ci;
 		ConsultarMundo cm;
 		MainWindow mw;
-		void mandarAlInfierno();
-		void salvarPersonas();
 		void enviarCorreo(string mensaje);
 		QString qStringGanador(int i, int j);
-		void ganador();
-		void makeConnections(){
-			connect(mw.getBoton(),SIGNAL(clicked()),this,SLOT(abrirVentanaInfierno()));
-			connect(mw.getBoton2(),SIGNAL(clicked()),this,SLOT(abrirVentanaCielo()));
-			connect(mw.getBoton3(),SIGNAL(clicked()),this,SLOT(abrirVentanaInfierno()));
-
-		}
+		void makeConnections();
 		QVector<QPair<Persona*,string>>getTodosLosDeLaFamilia(string apellido,string pais);
 		void porcentajeFamiliaVivaVsCieloVsInfierno(string apellido,string pais);
 		void todasLasPersonasApellidoPais(string apellido,string pais);
 		QVector<QPair<Persona*,string>> listadoPersonas(bool pecados,string filtro,string tipoFiltro);
-		Controller():mundo(),infierno(),paraiso(),cc(),ci(),cm(){
-			cc.setModal(1);
-			ci.setModal(1);
-			cm.setModal(1);
-			cc.exec();
-			ci.exec();
-			cm.exec();
-			cc.hide();
-			ci.hide();
-			cm.hide();
-			mw.show();
+	public:
+		void start(){
+			mw.showNormal();
 		}
-		Q_OBJECT
+		Controller();
+		virtual ~Controller(){}
 	public slots:
-		void abrirVentanaInfierno(){
-			mw.hide();
-			ci.show();
-		}
-		void abrirVentanaMundo(){
-			mw.hide();
-			cm.show();
-		}
-		void abrirVentanaParaiso(){
-			mw.hide();
-			cc.show();
-		}
-		void volverALaPrincipal(){
-			cc.hide();
-			ci.hide();
-			cm.hide();
-			mw.show();
-		}
+		void ganador();
+		void mandarAlInfierno();
+		void salvarPersonas();
+		void abrirVentanaInfierno();
+		void abrirVentanaMundo();
+		void abrirVentanaParaiso();
+		void volverALaPrincipal();
 };
 
 #endif // CONTROLLER_H

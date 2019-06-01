@@ -14,6 +14,10 @@ ConsultarCielo::~ConsultarCielo()
 	delete ui;
 }
 
+QPushButton*ConsultarCielo::getVolver(){
+	return ui->pushButton_2;
+}
+
 QPushButton*ConsultarCielo::SalvarHumanos(){
 	return ui->pushButton;
 }

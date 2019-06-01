@@ -13,11 +13,13 @@ ConsultarInfierno::~ConsultarInfierno()
 {
 	delete ui;
 }
+
 QPushButton*ConsultarInfierno::getVolver(){
-    return ui->pushButton;
+	return ui->pushButton;
 }
+
 QPushButton*ConsultarInfierno::getCondenar(){
-    return ui->pushButton_2;
+	return ui->pushButton_2;
 }
 
 

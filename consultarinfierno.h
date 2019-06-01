@@ -2,6 +2,7 @@
 #define CONSULTARINFIERNO_H
 
 #include <QDialog>
+#include <QCloseEvent>
 
 namespace Ui {
 class ConsultarInfierno;
@@ -16,8 +17,14 @@ class ConsultarInfierno : public QDialog
         ~ConsultarInfierno();
 
 		Ui::ConsultarInfierno *ui;
-        QPushButton*getVolver();
-        QPushButton*getCondenar();
+		QPushButton*getVolver();
+		QPushButton*getCondenar();
+		virtual void closeEvent(QCloseEvent*e){
+			e->ignore();
+			emit cerrar();
+		}
+	signals:
+		void cerrar();
 };
 
 #endif // MAINWINDOW_H
