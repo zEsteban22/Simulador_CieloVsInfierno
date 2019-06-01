@@ -16,6 +16,8 @@ class ConsultarInfierno : public QDialog
         ~ConsultarInfierno();
 
 		Ui::ConsultarInfierno *ui;
+        QPushButton*getVolver();
+        QPushButton*getCondenar();
 };
 
 #endif // MAINWINDOW_H

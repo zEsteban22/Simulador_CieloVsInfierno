@@ -16,7 +16,7 @@ class ConsultarCielo : public QDialog
         ~ConsultarCielo();
 
 		Ui::ConsultarCielo *ui;
-		QPushButton*getButton();
+        QPushButton*SalvarHumanos();
 };
 
 #endif // MAINWINDOW_H

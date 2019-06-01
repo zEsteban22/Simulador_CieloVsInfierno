@@ -16,9 +16,12 @@ class MainWindow : public QMainWindow
 		~MainWindow();
 
 		Ui::MainWindow *ui;
-		QPushButton*getBoton();
-		QPushButton*getBoton2();
-		QPushButton*getBoton3();
+        QPushButton*getConsultarInfierno();
+        QPushButton*getConsultarCielo();
+        QPushButton*getConsultarMundo();
+        QPushButton*getGanador();
+
+
 };
 
 #endif // MAINWINDOW_H

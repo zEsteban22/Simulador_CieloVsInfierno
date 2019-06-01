@@ -16,16 +16,24 @@ MainWindow::~MainWindow()
 	delete ui;
 }
 
-QPushButton*MainWindow::getBoton(){
+QPushButton*MainWindow::getConsultarInfierno(){
 	return ui->pushButton;
 }
 
-QPushButton*MainWindow::getBoton2(){
+QPushButton*MainWindow::getConsultarCielo(){
 	return ui->pushButton_2;
 }
 
-QPushButton*MainWindow::getBoton3(){
-	return ui->pushButton_3;
+QPushButton *MainWindow::getConsultarMundo(){
+    return ui->pushButton_3;
 }
+
+QPushButton *MainWindow::getGanador(){
+    return ui->pushButton_4;
+}
+
+
+
+
 
 
