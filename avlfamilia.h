@@ -29,9 +29,9 @@ struct avlFamilia {
 		nodoPersona*get(int d)const;
 		nodoPersona*get(int id, nodoPersona*r)const;
 		nodoPersona * insert(nodoPersona*, Persona*);
-		int* suma(bool pecados)const;
-		int* sumaPecados()const;
-		int* sumaVirtudes()const;
+		QVector<int>suma(bool pecados)const;
+		QVector<int>sumaPecados()const;
+		QVector<int>sumaVirtudes()const;
 		string inorder(int i=0);
 		string inorder(nodoPersona*,int i,string s="");
 		avlFamilia();

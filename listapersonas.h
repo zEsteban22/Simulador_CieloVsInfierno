@@ -4,7 +4,7 @@
 #include "nodolista.h"
 
 
-
+struct ArbolDelMundo;
 struct ListaPersonas
 {
 		NodoLista*p;
@@ -13,7 +13,8 @@ struct ListaPersonas
 		ListaPersonas();
 		NodoLista*getByIndex(int i);
 		int size();
-		void insertar(Persona*p,NodoLista*);
+		void insertar(Persona*p,ArbolDelMundo*a);
+		void insertar(Persona*p,NodoLista*n);
 		void eliminar(NodoLista*n);
 };
 

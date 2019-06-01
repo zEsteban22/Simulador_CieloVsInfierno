@@ -24,9 +24,9 @@ struct avlCielo {
 		nodoCielo*get(int d)const;
 		nodoCielo*get(int id, nodoCielo*r)const;
 		nodoCielo * insert(nodoCielo*, Persona*,NodoAngel*);
-		int* suma(bool pecados)const;
-		int* sumaPecados()const;
-		int* sumaVirtudes()const;
+		QVector<int> suma(bool pecados)const;
+		QVector<int>sumaPecados()const;
+		QVector<int>sumaVirtudes()const;
 		string inorder(int i=0);
 		string inorder(nodoCielo*,int i,string s="");
 		avlCielo();

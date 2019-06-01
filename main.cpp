@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QDir>
 #include <consultarmundo.h>
+
 int main(int argc, char *argv[])
 {
 
@@ -14,5 +15,7 @@ int main(int argc, char *argv[])
 	m.pecar();
 	m.obrarBien();
 	m.reportePaisesMasPecadores();
+	m.reportePecadosPorFamilia();
+	m.
 	return a.exec();
 }

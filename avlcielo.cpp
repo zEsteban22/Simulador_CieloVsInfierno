@@ -21,7 +21,6 @@ nodoCielo *avlCielo::rr_rotat(nodoCielo *parent) {
 	 t = parent->r;
 	 parent->r = t->l;
 	 t->l = parent;
-	 cout<<"Right-Right Rotation";
 	 return t;
 }
 nodoCielo *avlCielo::ll_rotat(nodoCielo *parent) {
@@ -29,21 +28,18 @@ nodoCielo *avlCielo::ll_rotat(nodoCielo *parent) {
 	 t = parent->l;
 	 parent->l = t->r;
 	 t->r = parent;
-	 cout<<"Left-Left Rotation";
 	 return t;
 }
 nodoCielo *avlCielo::lr_rotat(nodoCielo *parent) {
 	 nodoCielo *t;
 	 t = parent->l;
 	 parent->l = rr_rotat(t);
-	 cout<<"Left-Right Rotation";
 	 return ll_rotat(parent);
 }
 nodoCielo *avlCielo::rl_rotat(nodoCielo *parent) {
 	 nodoCielo *t;
 	 t = parent->r;
 	 parent->r = ll_rotat(t);
-	 cout<<"Right-Left Rotation";
 	 return rr_rotat(parent);
 }
 nodoCielo *avlCielo::balance(nodoCielo *t) {
@@ -97,24 +93,29 @@ nodoCielo *avlCielo::insert(nodoCielo *r, Persona* v,NodoAngel*salvador) {
 	 } return r;
 }
 
-int*avlCielo::suma(bool pecados) const{
-	static int salida[8]={0,0,0,0,0,0,0,0};
+QVector<int>avlCielo::suma(bool pecados) const{
+	QVector<int> salida;
 	QQueue<nodoCielo*>restantes;
 	nodoCielo*nodo=r;
+	QVector<int>a(8);
+	int*arr;
 	while(nodo!=nullptr){
 		restantes.enqueue(nodo->l);
 		restantes.enqueue(nodo->r);
-		sumaDeArrays(salida,pecados?nodo->d->pecados:nodo->d->virtudes);
+		a.clear();
+		arr=pecados?nodo->d->pecados:nodo->d->virtudes;
+		copy(arr,arr+8,back_inserter(a));
+		sumaDeArrays(&salida,&a);
 		nodo=restantes.dequeue();
 	}
 	return salida;
 }
 
-int*avlCielo::sumaPecados() const{
+QVector<int>avlCielo::sumaPecados() const{
 	return suma(true);
 }
 
-int*avlCielo::sumaVirtudes() const{
+QVector<int>avlCielo::sumaVirtudes() const{
 	return suma(false);
 
 }

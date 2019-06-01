@@ -34,8 +34,8 @@ void Mundo::insertarNuevaPersona(){
 			,"xllestebanllx@gmail.com",id);
 	familiasPorPais[QString::fromStdString(nuevaPersona->pais)]
 			[QString::fromStdString(nuevaPersona->apellido)].insert(nuevaPersona);
-	lista.insertar(nuevaPersona,arbol.getParaInsertar(nuevaPersona->id));
-	if (arbol.cantNodos<lista.size()*0.01)
+	lista.insertar(nuevaPersona,&arbol);
+	if (arbol.cantNodos<(int)lista.size()/100+1)
 		arbol.completarArbol(&lista);
 	char cantHijos=static_cast<char>(getRandomInt(0,9));
 	for(Persona*p:personasSinPapa){
@@ -75,38 +75,34 @@ void Mundo::pecar(){
 		temp->persona->pecar();
 }
 
-QMap<QString, int*> Mundo::cantAccionesPorFamilia(bool pecados, QString pais){
-	QMap<QString,int*>accionesPorFamilia;
-	for(auto j:familiasPorPais.value(pais).keys())
-		sumaDeArrays(accionesPorFamilia[j],(pecados?
-																					familiasPorPais.value(pais).value(j).sumaPecados():
-																					familiasPorPais.value(pais).value(j).sumaVirtudes())
-								 );
+QMap<QString, QVector<int>> Mundo::cantAccionesPorFamilia(bool pecados, QString pais){
+	QMap<QString,QVector<int>>accionesPorFamilia;
+	QVector<int>c;
+	for(auto j:familiasPorPais.value(pais).keys()){
+		c=(pecados?
+					familiasPorPais.value(pais).value(j).sumaPecados():
+					familiasPorPais.value(pais).value(j).sumaVirtudes());
+		sumaDeArrays(&accionesPorFamilia[j],&c);
+	}
 	return accionesPorFamilia;
 }
 
-QMap<QString, int*> Mundo::cantAccionesPorPais(bool pecados){
-	QMap<QString,int*>accionesPorPais;
-	for(auto i:familiasPorPais.keys())
-		for (auto j:cantAccionesPorFamilia(pecados,i))
-			sumaDeArrays(accionesPorPais[i],j);
-	return accionesPorPais;
-}
 
-QVector<QPair<int*, QString> > Mundo::ordenar(QMap<QString, int*> cantidadAccionesPorPais, bool ascendente){
-	QVector<QPair<int*,QString>> mapVector;
+
+QVector<QPair<QVector<int>, QString> > Mundo::ordenar(QMap<QString, QVector<int>> cantidadAccionesPorPais, bool ascendente){
+	QVector<QPair<QVector<int>,QString>> mapVector;
 	for (auto i :cantidadAccionesPorPais.keys())
-		mapVector.append(QPair<int*,QString>(cantidadAccionesPorPais[i],i));
+		mapVector.append(QPair<QVector<int>,QString>(cantidadAccionesPorPais[i],i));
 	sort(mapVector.begin(),mapVector.end(),comparador(ascendente));
 	return mapVector;
 }
 
 void Mundo::reporte(bool ascendente, bool pecadores, int cant){
-	QVector<QPair<int*,QString>> resultado=ordenar(cantAccionesPorPais(pecadores),ascendente);
+	QVector<QPair<QVector<int>,QString>> resultado=ordenar(cantAccionesPorPais(pecadores),ascendente);
 	imprimirResultado(resultado,cant);
 }
 
-void Mundo::imprimirResultado(QVector<QPair<int*, QString> > resultado, int cant){
+void Mundo::imprimirResultado(QVector<QPair<QVector<int>, QString> > resultado, int cant){
 	QString salida="";
 	for (int i = 0; i < cant&&i<resultado.size(); ++i)
 		salida+=QString::number(i+1)+") "+resultado[i].second+" con "+QString::number(resultado[i].first[7])+"\n";
@@ -168,6 +164,6 @@ void Mundo::reporteVirtudesPorFamilia(){
 
 comparador::comparador(bool a):ascendente(a){}
 
-bool comparador::operator()(const QPair<int*, QString>&a, const QPair<int*, QString>&b) const {
-	return ascendente==(a.first[8] < b.first[8]);
+bool comparador::operator()(const QPair<QVector<int>, QString>&a, const QPair<QVector<int>, QString>&b) const {
+	return ascendente==(a.first[7] < b.first[7]);
 }

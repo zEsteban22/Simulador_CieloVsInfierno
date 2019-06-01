@@ -5,7 +5,7 @@
 #include<QVector>
 #include"randomxd.h"
 
-void sumaDeArrays(int arr1[8],int arr2[8]);
+void sumaDeArrays(QVector<int>*arr1,QVector<int>*arr2);
 struct Persona
 {
 		int id;
@@ -13,6 +13,7 @@ struct Persona
 		time_t momentoNacimiento;
 		int pecados[8],virtudes[8];
 		QVector<Persona*> hijos;
+		Persona();
 		Persona(std::string n,std::string a,std::string p,std::string c,std::string pf,std::string e,
 						int i);
 		void pecar();

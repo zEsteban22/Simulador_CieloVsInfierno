@@ -21,7 +21,6 @@ nodoPersona *avlFamilia::rr_rotat(nodoPersona *parent) {
 	 t = parent->r;
 	 parent->r = t->l;
 	 t->l = parent;
-	 cout<<"Right-Right Rotation";
 	 return t;
 }
 nodoPersona *avlFamilia::ll_rotat(nodoPersona *parent) {
@@ -29,14 +28,12 @@ nodoPersona *avlFamilia::ll_rotat(nodoPersona *parent) {
 	 t = parent->l;
 	 parent->l = t->r;
 	 t->r = parent;
-	 cout<<"Left-Left Rotation";
 	 return t;
 }
 nodoPersona *avlFamilia::lr_rotat(nodoPersona *parent) {
 	 nodoPersona *t;
 	 t = parent->l;
 	 parent->l = rr_rotat(t);
-	 cout<<"Left-Right Rotation";
 	 return ll_rotat(parent);
 }
 nodoPersona *avlFamilia::rl_rotat(nodoPersona *parent) {
@@ -98,24 +95,29 @@ nodoPersona *avlFamilia::insert(nodoPersona *r, Persona* v) {
 	 } return r;
 }
 
-int*avlFamilia::suma(bool pecados) const{
-	static int salida[8]={0,0,0,0,0,0,0,0};
+QVector<int>avlFamilia::suma(bool pecados) const{
+	QVector<int>salida(8);
 	QQueue<nodoPersona*>restantes;
 	nodoPersona*nodo=r;
+	QVector<int>a(8);
+	int*arr;
 	while(nodo!=nullptr){
 		restantes.enqueue(nodo->l);
 		restantes.enqueue(nodo->r);
-		sumaDeArrays(salida,pecados?nodo->d->pecados:nodo->d->virtudes);
+		a.clear();
+		arr=pecados?nodo->d->pecados:nodo->d->virtudes;
+		copy(arr,arr+8,back_inserter(a));
+		sumaDeArrays(&salida,&a);
 		nodo=restantes.dequeue();
 	}
 	return salida;
 }
 
-int*avlFamilia::sumaPecados() const{
+QVector<int>avlFamilia::sumaPecados() const{
 	return suma(true);
 }
 
-int*avlFamilia::sumaVirtudes() const{
+QVector<int>avlFamilia::sumaVirtudes() const{
 	return suma(false);
 
 }

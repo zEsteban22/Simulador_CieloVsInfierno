@@ -1,5 +1,5 @@
 #include "listapersonas.h"
-
+#include "arboldelmundo.h"
 NodoLista*ListaPersonas::primero(){
 	return p;
 }
@@ -18,7 +18,16 @@ int ListaPersonas::size(){
 	return s;
 }
 
+void ListaPersonas::insertar(Persona*p, ArbolDelMundo*a){
+	NodoLista*anterior=a->getParaInsertar(p->id);
+	insertar(p,anterior);
+	if(p==this->p->persona&&a->raiz!=nullptr)
+		a->actualizarMenor();
+}
+
 void ListaPersonas::insertar(Persona*p,NodoLista*anterior){
+	if(anterior!=nullptr&&anterior->siguiente!=nullptr&&anterior->siguiente->persona->id==p->id)
+		return;
 	NodoLista*nuevo=new NodoLista(p,anterior);
 	s++;
 	if(this->p==nullptr)

@@ -18,7 +18,7 @@ void ArbolDelMundo::aniadirAlArbol(NodoArbol*nodo){
 void ArbolDelMundo::aniadirAlArbol(NodoArbol*nodo, NodoArbol*raiz){
 	NodoArbol**temp=&raiz;
 	while(*temp!=nullptr)
-		temp=&(nodo->nodoLista->persona->id<=(*temp)->nodoLista->persona->id?
+		temp=&(nodo->nodoLista->persona->id<=(*temp)->valor?
 						 (*temp)->hijoIzquierdo:
 						 (*temp)->hijoDerecho
 						 );
@@ -66,8 +66,11 @@ void ArbolDelMundo::aniadirNivel(NodoArbol*nodo, NodoArbol*raiz){
 
 void ArbolDelMundo::completarArbol(ListaPersonas*lista){
 	limpiarArbol();
-	aniadirAlArbol(lista->getByIndex(lista->size()/2));
-	completarArbol(lista,0,lista->size());
+	raiz=new NodoArbol(lista->getByIndex(lista->size()/2));
+	raiz->valor=lista->p->persona->id;
+	completarArbol(lista,0,lista->size(),raiz);
+	raiz->valor=raiz->nodoLista->persona->id;
+
 	NodoArbol*temp=raiz;
 	cantNodos=1;
 	while (temp->hijoIzquierdo!=nullptr){
@@ -77,12 +80,15 @@ void ArbolDelMundo::completarArbol(ListaPersonas*lista){
 	vaciarArbol();
 }
 
-void ArbolDelMundo::completarArbol(ListaPersonas*lista, int inicio, int fin){
-	if (fin-inicio>=100){
-		aniadirAlArbol(lista->getByIndex(inicio));
-		aniadirAlArbol(lista->getByIndex((inicio+fin)/2));
-		completarArbol(lista,inicio,fin/2);
-		completarArbol(lista,fin/2,fin);
+void ArbolDelMundo::completarArbol(ListaPersonas*lista, int inicio, int fin,NodoArbol*n){
+	NodoLista*l;
+	if (fin-inicio>=100&&n!=nullptr){
+		l=lista->getByIndex(inicio);
+		n->hijoIzquierdo=new NodoArbol(l);
+		l=lista->getByIndex((inicio+fin)/2);
+		n->hijoDerecho=new NodoArbol(l);
+		completarArbol(lista,inicio,(inicio+fin)/2,n->hijoIzquierdo);
+		completarArbol(lista,(inicio+fin)/2,fin,n->hijoDerecho);
 	}
 }
 
@@ -116,5 +122,11 @@ Persona*ArbolDelMundo::getPersonaPorId(int i){
 
 bool ArbolDelMundo::existe(int i){
 	NodoLista*n=getParaInsertar(i);
-	return n!=nullptr&&n->persona->id==i;
+	if(n==nullptr)
+		return false;
+	else if(n->siguiente==nullptr)
+		return false;
+	else if(n->siguiente->persona->id!=i)
+		return false;
+	else return true;
 }
